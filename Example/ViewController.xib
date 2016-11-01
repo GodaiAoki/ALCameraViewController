@@ -87,7 +87,7 @@
                 <constraint firstItem="I4G-in-XtY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="hv9-n7-2WA"/>
                 <constraint firstItem="QHP-Db-zQM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="x5W-Fe-hte"/>
             </constraints>
-            <point key="canvasLocation" x="366" y="492"/>
+            <point key="canvasLocation" x="365.5" y="491.5"/>
         </view>
     </objects>
 </document>

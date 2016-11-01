@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		48C033771DC6FEDF0009F0CB /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C033741DC6FEDF0009F0CB /* Alamofire.framework */; };
+		48C033781DC6FEDF0009F0CB /* AlamofireNetworkActivityIndicator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C033751DC6FEDF0009F0CB /* AlamofireNetworkActivityIndicator.framework */; };
+		48C033791DC6FEDF0009F0CB /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48C033761DC6FEDF0009F0CB /* SwiftyJSON.framework */; };
 		C40665441C73A47C00EB9751 /* SingleImageSaver.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40665431C73A47C00EB9751 /* SingleImageSaver.swift */; };
 		C40665461C73A94100EB9751 /* CameraGlobals.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40665451C73A94100EB9751 /* CameraGlobals.swift */; };
 		C40665481C73B72D00EB9751 /* SingleImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C40665471C73B72D00EB9751 /* SingleImageFetcher.swift */; };
@@ -58,6 +61,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		48C033741DC6FEDF0009F0CB /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		48C033751DC6FEDF0009F0CB /* AlamofireNetworkActivityIndicator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireNetworkActivityIndicator.framework; path = Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework; sourceTree = "<group>"; };
+		48C033761DC6FEDF0009F0CB /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		C40665431C73A47C00EB9751 /* SingleImageSaver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageSaver.swift; sourceTree = "<group>"; };
 		C40665451C73A94100EB9751 /* CameraGlobals.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraGlobals.swift; sourceTree = "<group>"; };
 		C40665471C73B72D00EB9751 /* SingleImageFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleImageFetcher.swift; sourceTree = "<group>"; };
@@ -103,12 +109,25 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C033771DC6FEDF0009F0CB /* Alamofire.framework in Frameworks */,
+				48C033781DC6FEDF0009F0CB /* AlamofireNetworkActivityIndicator.framework in Frameworks */,
+				48C033791DC6FEDF0009F0CB /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		48C033731DC6FEDF0009F0CB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				48C033741DC6FEDF0009F0CB /* Alamofire.framework */,
+				48C033751DC6FEDF0009F0CB /* AlamofireNetworkActivityIndicator.framework */,
+				48C033761DC6FEDF0009F0CB /* SwiftyJSON.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C4829FFC1CAEB16C00541D08 /* CameraViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,6 +184,7 @@
 				FAF058411B31618D008E5592 /* ALCameraViewController */,
 				C4829FFC1CAEB16C00541D08 /* CameraViewController */,
 				FAF058401B31618D008E5592 /* Products */,
+				48C033731DC6FEDF0009F0CB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -249,6 +269,7 @@
 				FAF0583B1B31618D008E5592 /* Sources */,
 				FAF0583C1B31618D008E5592 /* Frameworks */,
 				FAF0583D1B31618D008E5592 /* Resources */,
+				48115DFF1DC815510034F348 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -276,7 +297,7 @@
 					};
 					FAF0583E1B31618D008E5592 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = GAPQH4AM76;
+						DevelopmentTeam = 93US3CSM62;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -326,6 +347,25 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		48115DFF1DC815510034F348 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SwiftyJSON.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireNetworkActivityIndicator.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C4829FF61CAEB16C00541D08 /* Sources */ = {
@@ -524,12 +564,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GAPQH4AM76;
+				DEVELOPMENT_TEAM = 93US3CSM62;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Example/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zero.CameraViewController;
+				PRODUCT_BUNDLE_IDENTIFIER = ea.com.zero.CameraViewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -540,12 +585,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = GAPQH4AM76;
+				DEVELOPMENT_TEAM = 93US3CSM62;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Example/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.zero.CameraViewController;
+				PRODUCT_BUNDLE_IDENTIFIER = ea.com.zero.CameraViewController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

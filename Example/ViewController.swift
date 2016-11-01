@@ -7,11 +7,17 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ViewController: UIViewController {
 
     var croppingEnabled: Bool = false
     var libraryEnabled: Bool = true
+    
+    let apikey = "87626f34308b46f50c748e828e5f841a724dfbe9"
+    let classifierId = "candychecker_803999376"
+    
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -22,10 +28,122 @@ class ViewController: UIViewController {
     @IBAction func openCamera(_ sender: AnyObject) {
         let cameraViewController = CameraViewController(croppingEnabled: croppingEnabled, allowsLibraryAccess: libraryEnabled) { [weak self] image, asset in
             self?.imageView.image = image
+            
+            let classifyURL = "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classify?api_key="
+                + (self?.apikey)! + "&version=2016-05-20"
+            
+            let resizedImage:UIImage = self!.resizeImage(src: image!)
+            
+            let imageData:Data = UIImagePNGRepresentation(resizedImage)! as Data
+            
+            let jsonParams: [String: AnyObject] = ["classifier_ids": self!.classifierId as AnyObject]
+            
+            Alamofire.upload(
+                multipartFormData: { (multipartFormData) in
+                    
+                    multipartFormData.append((self?.jsonToData(json: jsonParams as AnyObject)!)!, withName: "parameters")
+                    
+                    multipartFormData.append(imageData, withName: "images_file", fileName: "test.png", mimeType: "image/png")
+                },
+                to:classifyURL,
+                // リクエストボディ生成のエンコード処理が完了したら呼ばれる
+                encodingCompletion: { (encodingResult) in
+                    switch encodingResult {
+                    // エンコード成功時
+                    case .success(let upload, _, _):
+                        // 実際にAPIリクエストする
+                        upload.responseJSON { response in
+                            
+                            // ここからレスポンスを受け取って処理をする..
+                            print("responseResult: \(response.result.value)")
+                            /*self!.resultLabel.textAlignment = NSTextAlignment.left;
+                            self!.resultLabel.numberOfLines = 0;
+                            self!.resultLabel.font = UIFont.systemFont(ofSize: 14.0);*/
+                            
+                            
+                            guard let object = response.result.value else {
+                                return
+                            }
+                            
+                            let json = JSON(object)
+                            
+                            var matchClass = ""
+                            var matchScore:Float = 0
+                            json["images"][0]["classifiers"][0]["classes"].forEach { (_, json) in
+                                print("class: \(json["class"].string)")
+                                print("score: \(json["score"].stringValue)")
+                                if(matchScore < json["score"].floatValue){
+                                    matchClass = json["class"].string!
+                                    matchScore = json["score"].floatValue
+                                }
+                            }
+                            
+                            let message = "This picture is " + matchClass + "\n confidence:" + matchScore.description
+                            let alert: UIAlertController = UIAlertController(title: "result", message: message, preferredStyle:  UIAlertControllerStyle.alert)
+
+                            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
+                                // ボタンが押された時の処理を書く（クロージャ実装）
+                                (action: UIAlertAction!) -> Void in
+                                print("OK")
+                            })
+                            
+                             alert.addAction(defaultAction)
+                            
+                            self?.present(alert, animated: true, completion: nil)
+                            
+                        }
+                    // エンコード失敗時
+                    case .failure(let encodingError):
+                        print(encodingError)
+                    }
+                }
+            )
+            
             self?.dismiss(animated: true, completion: nil)
         }
         
         present(cameraViewController, animated: true, completion: nil)
+    }
+    
+    // Convert from JSON to nsdata
+    func jsonToData(json: AnyObject) -> Data?{
+        do {
+            return try JSONSerialization.data(withJSONObject: json, options: JSONSerialization.WritingOptions.prettyPrinted) as Data?
+        } catch let myJSONError {
+            print(myJSONError)
+        }
+        return nil;
+    }
+    
+    //resizeImage
+    func resizeImage(src: UIImage) -> UIImage {
+        
+        //Classifyするイメージはせいぜい最大320 * 320(教育データに習う)
+        let maxLongSide:Int = 320
+        var resizedSize:CGSize
+        
+        let ss = src.size
+        if maxLongSide == 0 || ( Int(ss.width) <= maxLongSide && Int(ss.height) <= maxLongSide ) {
+            resizedSize = ss
+            return src
+        }
+        
+        
+        // リサイズ後のサイズを計算
+        let ax = Int(ss.width) / maxLongSide
+        let ay = Int(ss.height) / maxLongSide
+        let ar = ax > ay ? ax : ay
+        let re = CGRect(x: 0, y: 0, width: Int(ss.width) / ar, height: Int(ss.height) / ar)
+        
+        // リサイズ
+        UIGraphicsBeginImageContext(re.size)
+        src.draw(in: re)
+        let dst = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        resizedSize = dst!.size
+        
+        return dst!
     }
     
     @IBAction func openLibrary(_ sender: AnyObject) {
