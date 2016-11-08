@@ -46,5 +46,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>Visual Recognition API Key</key>
+	<string>87626f34308b46f50c748e828e5f841a724dfbe9</string>
+	<key>Visual Recognition Classifier Id</key>
+	<string>candychecker_109827325</string>
 </dict>
 </plist>

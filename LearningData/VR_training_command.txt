@@ -1,1 +1,9 @@
-curl -X POST -F "almondchoco_positive_examples=@almondchoco.zip" -F "jagariko_positive_examples=@jagariko.zip" -F "kitkat_positive_examples=@kitkat.zip" -F  "pocky_positive_examples=@pocky.zip" -F "negative_examples=@negative.zip" -F "name=candychecker" "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classifiers?api_key=87626f34308b46f50c748e828e5f841a724dfbe9&version=2016-05-20"
+Training Command Example
+curl -X POST -F "jagariko_positive_examples=@jagariko.zip" -F "kitkat_positive_examples=@kitkat.zip" -F "kinoko_positive_examples=@kinoko.zip" -F "takenoko_positive_examples=@takenoko.zip" -F  "pocky_positive_examples=@pocky.zip" -F "negative_examples=@negative.zip" -F "name=candychecker" "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classifiers?api_key=87626f34308b46f50c748e828e5f841a724dfbe9&version=2016-05-20"
+
+Get Classify list Command Example
+curl -X GET "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classifiers?api_key=87626f34308b46f50c748e828e5f841a724dfbe9&version=2016-05-20"
+
+Delete Classfier Example
+ curl -X DELETE "https://gateway-a.watsonplatform.net/visual-recognition/api/v3/classifiers/candychecker_934872346?api_key=87626f34308b46f50c748e828e5f841a724dfbe9&version=2016-05-20"
+ 

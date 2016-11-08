@@ -15,8 +15,8 @@ class ViewController: UIViewController {
     var croppingEnabled: Bool = false
     var libraryEnabled: Bool = true
     
-    let apikey = "87626f34308b46f50c748e828e5f841a724dfbe9"
-    let classifierId = "candychecker_803999376"
+    let apikey:String = Bundle.main.infoDictionary!["Visual Recognition API Key"] as! String
+    let classifierId:String = Bundle.main.infoDictionary!["Visual Recognition Classifier Id"] as! String
     
     
     @IBOutlet weak var imageView: UIImageView!
@@ -78,8 +78,8 @@ class ViewController: UIViewController {
                                 }
                             }
                             
-                            let message = "This picture is " + matchClass + "\n confidence:" + matchScore.description
-                            let alert: UIAlertController = UIAlertController(title: "result", message: message, preferredStyle:  UIAlertControllerStyle.alert)
+                            let message = "confidence:" + matchScore.description
+                            let alert: UIAlertController = UIAlertController(title: "This is " + matchClass, message: message, preferredStyle:  UIAlertControllerStyle.alert)
 
                             let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler:{
                                 // ボタンが押された時の処理を書く（クロージャ実装）
