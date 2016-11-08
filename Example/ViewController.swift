@@ -54,11 +54,7 @@ class ViewController: UIViewController {
                         // 実際にAPIリクエストする
                         upload.responseJSON { response in
                             
-                            // ここからレスポンスを受け取って処理をする..
                             print("responseResult: \(response.result.value)")
-                            /*self!.resultLabel.textAlignment = NSTextAlignment.left;
-                            self!.resultLabel.numberOfLines = 0;
-                            self!.resultLabel.font = UIFont.systemFont(ofSize: 14.0);*/
                             
                             
                             guard let object = response.result.value else {
